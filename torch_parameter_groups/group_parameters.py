@@ -26,6 +26,9 @@ def group_parameters(model: nn.Module, rules: List[GroupRule]) -> List[List[nn.P
                 if rule.match(module, param_name=name, prefix=new_prefix):
                     results[i].append(param)
                     break
+            else:
+                if new_match_level is not None:
+                    results[new_match_level - 1].append(param)
 
     dfs(model)
     return results
