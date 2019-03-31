@@ -43,6 +43,9 @@ class OptimizerWrapper:
     def step(self, closure: callable = None):
         self.core.step(closure=closure)
 
+    def __repr__(self):
+        return repr(self.core)
+
     @classmethod
     def factory(cls, model: torch.nn.Module, config: dict = None):
         jsonschema.validate(config or {}, cls.schema)

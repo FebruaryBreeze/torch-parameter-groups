@@ -42,6 +42,7 @@ class MyTestCase(unittest.TestCase):
         loss = model(torch.randn(1, 3, 16, 16)).sum()
         loss.backward()
         optimizer.step()
+        self.assertTrue(repr(optimizer).lstrip().startswith('SGD'))
 
 
 if __name__ == '__main__':
