@@ -60,11 +60,11 @@ class MyTestCase(unittest.TestCase):
         model = MockModule()
         results = group_parameters(model, rules=rules)
         self.assertEqual(len(results), 5)
-        self.assertEqual(set(id(p) for p in results[0]), {id(model.sub.bn1.weight), id(model.sub.bn1.bias)})
-        self.assertEqual(set(id(p) for p in results[1]), {id(model.conv1.weight), id(model.conv2.weight)})
-        self.assertEqual(set(id(p) for p in results[2]), {id(model.conv1.bias), id(model.conv2.bias)})
-        self.assertEqual(set(id(p) for p in results[3]), {id(model.bn1.weight)})
-        self.assertEqual(set(id(p) for p in results[4]), {id(model.bn1.bias)})
+        self.assertEqual(set(map(id, results[0])), {id(model.sub.bn1.weight), id(model.sub.bn1.bias)})
+        self.assertEqual(set(map(id, results[1])), {id(model.conv1.weight), id(model.conv2.weight)})
+        self.assertEqual(set(map(id, results[2])), {id(model.conv1.bias), id(model.conv2.bias)})
+        self.assertEqual(set(map(id, results[3])), {id(model.bn1.weight)})
+        self.assertEqual(set(map(id, results[4])), {id(model.bn1.bias)})
 
 
 if __name__ == '__main__':

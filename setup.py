@@ -14,7 +14,7 @@ setup(
     package_data={f'{module}': ['schema/*.json']},
     install_requires=[
         'jsonschema',
-        'json-schema-to-class',
+        'json-schema-to-class>=0.1.0',
         'torch',
     ]
 )

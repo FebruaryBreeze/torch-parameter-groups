@@ -8,8 +8,8 @@ from .configs import GroupRuleConfig
 
 
 class GroupRule:
-    with open(str(Path(__file__).parent / 'schema' / 'group_rule_config.json')) as f:
-        schema = json.load(f)
+    with open(str(Path(__file__).parent / 'schema' / 'optimizer_wrapper_config.json')) as f:
+        schema = json.load(f)['definitions']['group_rule_config']
 
     def __init__(self, config: GroupRuleConfig):
         self.module_type_set = set(config.module_type_list)
