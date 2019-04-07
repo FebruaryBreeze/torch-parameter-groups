@@ -43,6 +43,7 @@ class MyTestCase(unittest.TestCase):
         loss.backward()
         optimizer.step()
         self.assertTrue(repr(optimizer).lstrip().startswith('SGD'))
+        self.assertTrue(isinstance(optimizer.param_groups, list))
 
 
 if __name__ == '__main__':
