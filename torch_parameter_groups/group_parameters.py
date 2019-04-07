@@ -1,8 +1,17 @@
-from typing import List
+from typing import Iterator, List, Tuple
 
 import torch.nn as nn
 
 from .group_rule import GroupRule
+
+
+def named_parameters(module: nn.Module, memo: set = None, prefix: str = '') -> Iterator[Tuple[str, nn.Parameter]]:
+    if memo is None:
+        memo = set()
+    for name, p in module._parameters.items():
+        if p is not None and p not in memo:
+            memo.add(p)
+            yield prefix + ('.' if prefix else '') + name, p
 
 
 def group_parameters(model: nn.Module, rules: List[GroupRule]) -> List[List[nn.Parameter]]:
@@ -20,7 +29,7 @@ def group_parameters(model: nn.Module, rules: List[GroupRule]) -> List[List[nn.P
         for name, child in module.named_children():
             dfs(child, prefix=f'{prefix}.{name}' if prefix else name, match_level=new_match_level)
 
-        for name, param in module.named_parameters(recurse=False):
+        for name, param in named_parameters(module=module):
             new_prefix = f'{prefix}.{name}' if prefix else name
             for i, rule in enumerate(rules[:match_level]):
                 if rule.match(module, param_name=name, prefix=new_prefix):

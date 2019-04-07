@@ -43,6 +43,10 @@ class OptimizerWrapper:
     def step(self, closure: callable = None):
         self.core.step(closure=closure)
 
+    @property
+    def param_groups(self):
+        return self.core.param_groups
+
     def __repr__(self):
         return repr(self.core)
 
