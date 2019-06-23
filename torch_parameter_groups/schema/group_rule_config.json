@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "group_rule_config",
+  "description": "Group Rule Config",
+  "type": "object",
+  "properties": {
+    "module_type_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "module type list, like `BatchNorm2d`. empty means arbitrary"
+    },
+    "module_name_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "module name list, like `classifier`. empty means arbitrary"
+    },
+    "param_name_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "param name list, like `weight` and `bias`. empty means arbitrary"
+    },
+    "prefix_list": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "prefix list, like `core.classifier`. empty means arbitrary"
+    },
+    "kwargs": {
+      "type": "object",
+      "default": {},
+      "description": "extra kwargs of this rule for optimizer, like weight_decay"
+    },
+    "refuse_if_match": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "optimizer_config",
+  "description": "Optimizer Config",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "default": "SGD"
+    },
+    "lr": {
+      "type": "number",
+      "default": 0.0
+    },
+    "kwargs": {
+      "type": "object",
+      "default": {}
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "default": [
+        {}
+      ]
+    }
+  },
+  "additionalProperties": false
+}
